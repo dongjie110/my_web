@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="zh">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <link rel="icon" href="{% static "images/smile.ico" %}" type="image/x-icon" />
+    <meta charset="UTF-8">
+    <title>My blogs</title>
+</head>
+<body>
+{#<div>#}
+{#    <h2><a href="/">Blog</a></h2>#}
+{#</div>#}
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse-basepage">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="{% url 'homepage' %}" class="navbar-brand">E-space</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-basepage">
+            <ul class="nav navbar-nav">
+                <li id="homepage"><a href="{% url 'homepage' %}">主页</a></li>
+                <li id="add_book"><a href="{% url 'movie' %}">电影</a></li>
+                <li id="add_img"><a href="{% url 'view_book_list' %}">图书</a></li>
+                {% if user.myuser.permission > 1 %}
+                    <li id="add_book"><a href="{% url 'add_book' %}">添加图书</a></li>
+                    <li id="add_img"><a href="{% url 'add_img' %}">添加图片</a></li>
+                {% endif %}
+{#                <li id="view_book"><a href="{% url 'get_blogs' %}">游戏人生</a></li>#}
+                <li id="view_blog_list"><a href="{% url 'view_blog_list' %}">博客</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if user %}
+                    <li><p class="navbar-text">欢迎你&nbsp;&nbsp;<span id="base_name">{{ user.myuser.nickname }}</span></p>
+                    </li>
+                    <li><a href="{% url 'logout' %}">注销</a></li>
+                    <li><a href="{% url 'set_password' %}">修改密码</a></li>
+                {% else %}
+                    <li><a href="{% url 'signup' %}">注册</a></li>
+                    <li><a href="{% url 'login' %}">登录</a></li>
+                {% endif %}
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<header class="jumbotron subhead" id="header-base">
+    <div class="container">
+        <h1>E-SPACE</h1>
+        <h3>&emsp;&emsp;eeeee</h3>
+    </div>
+</header>
+{% block content %}{% endblock %}
+{#<div class="header">#}
+{#    <h1 align="center">My Blogs</h1>#}
+{#</div>#}
+{##}
+{#    {% for blog in blogs %}#}
+{#        <div align="center" class="blog">#}
+{#            <div>#}
+{#             <h1><a href="{% url 'blog_get_detail' blog.id %}">{{ blog.title }}</a></h1>#}
+{#            </div>#}
+{#            <div>#}
+{#             <h1><a href="{% url 'catagory_get_detail' blog.catagory_id %}">{{ blog.catagory }}</a></h1>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div align="center" class="info">#}
+{#            <span class="catagory" style="color: #ff9900;">{{ blog.catagory.name }}</span>#}
+{#            <span class="author" style="color: #4a86e8;">{{ blog.author }}</span>#}
+{#            <span class="created" style="color: #6aa84e;">{{ blog.created |date:"Y-m-d H:i" }}</span>#}
+{#        </div>#}
+{#        <div align="center" class="summary">#}
+{#            {{ blog.content | truncatechars:100 }}#}
+{#        </div>#}
+{#        </div>#}
+{#    {% endfor %}#}
+<footer class="footer" role="contentinfo">
+    <hr>
+    <div class="container">
+        <p class="text-center"><strong>HIT-CS</strong></p>
+        <p class="text-center">©All rights reserved</p>
+        <h5 class="text-center"> Powered by&nbsp;<a href="http://jasondj.com/">Dong Jie</a></h5>
+    </div>
+</footer>
+<!-- /.footer-->
+<script type="text/javascript">
+    $('#{{active_menu}}').addClass("active");
+</script>
+
+
+</body>
+</html>

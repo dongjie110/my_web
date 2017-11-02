@@ -1,0 +1,20 @@
+h1 a {
+    color: #7fffd4;
+}
+
+.blog{
+            padding:10px 0px;
+        }
+        .blog .info span {
+            padding-right: 10px;
+        }
+        .blog .summary {
+            padding-top:20px;
+        }
+body {
+     font-family: Verdana, sans-serif;
+     }
+#header-base {
+    background-color: #7fffd4;
+    color: #fff;
+}
